@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebLabMobile.Pages.LoginPage"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32,80,32,32" Spacing="16" VerticalOptions="Center">
+
+            <Label Text="ArticleHub"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource Accent}" />
+
+            <Label Text="Sign in to your account"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource TextSecondary}"
+                   Margin="0,0,0,12" />
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="4,0">
+                <Entry x:Name="EmailEntry"
+                       Placeholder="Email"
+                       Keyboard="Email"
+                       ReturnType="Next"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="{StaticResource TextSecondary}" />
+            </Border>
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="4,0">
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="Password"
+                       IsPassword="True"
+                       ReturnType="Done"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="{StaticResource TextSecondary}" />
+            </Border>
+
+            <Label x:Name="ErrorLabel"
+                   TextColor="{StaticResource Accent}"
+                   IsVisible="False"
+                   FontSize="13" />
+
+            <Button x:Name="LoginButton"
+                    Text="Log In"
+                    BackgroundColor="{StaticResource Accent}"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Clicked="OnLoginClicked" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                <Label Text="Don't have an account?"
+                       TextColor="{StaticResource TextSecondary}"
+                       FontSize="13" />
+                <Label Text="Register"
+                       TextColor="{StaticResource Accent}"
+                       FontSize="13"
+                       FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRegisterTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

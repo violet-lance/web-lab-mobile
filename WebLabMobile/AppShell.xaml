@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:WebLabMobile.Pages"
+       x:Class="WebLabMobile.AppShell"
+       FlyoutBehavior="Disabled"
+       Shell.BackgroundColor="{StaticResource AppBackground}"
+       Shell.TitleColor="White"
+       Shell.NavBarHasShadow="False"
+       Shell.TabBarBackgroundColor="{StaticResource CardBackground}"
+       Shell.TabBarForegroundColor="{StaticResource Accent}"
+       Shell.TabBarTitleColor="White"
+       Shell.TabBarUnselectedColor="{StaticResource TextSecondary}">
+
+    <!-- Login (no tab bar) -->
+    <ShellContent Route="login"
+                  ContentTemplate="{DataTemplate pages:LoginPage}"
+                  Shell.TabBarIsVisible="False"
+                  Shell.NavBarIsVisible="False" />
+
+    <!-- Main authenticated area -->
+    <TabBar>
+        <Tab Title="Articles">
+            <ShellContent Route="home"
+                          ContentTemplate="{DataTemplate pages:HomePage}"
+                          Shell.NavBarIsVisible="False" />
+        </Tab>
+        <Tab Title="About">
+            <ShellContent Route="about"
+                          ContentTemplate="{DataTemplate pages:AboutPage}"
+                          Shell.NavBarIsVisible="False" />
+        </Tab>
+        <Tab Title="Profile">
+            <ShellContent Route="profile"
+                          ContentTemplate="{DataTemplate pages:ProfilePage}"
+                          Shell.NavBarIsVisible="False" />
+        </Tab>
+    </TabBar>
+
+</Shell>

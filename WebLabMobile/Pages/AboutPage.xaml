@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebLabMobile.Pages.AboutPage"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <Label Text="About ArticleHub"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Accent}"
+                   Margin="0,16,0,0" />
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="What is ArticleHub?"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label TextColor="#CDCDDB"
+                           FontSize="14"
+                           LineBreakMode="WordWrap">
+                        <Label.Text>ArticleHub is a community platform where writers and readers come together. Share your thoughts, explore ideas, and engage in meaningful conversations through articles and comments.</Label.Text>
+                    </Label>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Features"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="• Write and publish articles"
+                               TextColor="#CDCDDB" FontSize="14" />
+                        <Label Text="• Comment and discuss with the community"
+                               TextColor="#CDCDDB" FontSize="14" />
+                        <Label Text="• Manage your own content"
+                               TextColor="#CDCDDB" FontSize="14" />
+                        <Label Text="• Personalised profile"
+                               TextColor="#CDCDDB" FontSize="14" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="20">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Version"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="ArticleHub Mobile v1.0"
+                           TextColor="{StaticResource TextSecondary}"
+                           FontSize="14" />
+                </VerticalStackLayout>
+            </Border>
+
+            <BoxView HeightRequest="16" Color="Transparent" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

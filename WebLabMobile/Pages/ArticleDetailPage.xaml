@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebLabMobile.Pages.ArticleDetailPage"
+             BackgroundColor="{StaticResource AppBackground}"
+             Title="Article">
+
+    <CollectionView x:Name="CommentsView"
+                    SelectionMode="None">
+
+        <CollectionView.Header>
+            <VerticalStackLayout Padding="16" Spacing="10">
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                   IsRunning="True"
+                                   IsVisible="True"
+                                   Color="{StaticResource Accent}"
+                                   HorizontalOptions="Center" />
+                <Label x:Name="ArticleTitleLabel"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       LineBreakMode="WordWrap" />
+                <Label x:Name="ArticleMetaLabel"
+                       TextColor="{StaticResource TextSecondary}"
+                       FontSize="12" />
+                <Label x:Name="ArticleContentLabel"
+                       TextColor="#CDCDDB"
+                       FontSize="15"
+                       LineBreakMode="WordWrap" />
+                <BoxView Color="{StaticResource BorderColor}"
+                         HeightRequest="1"
+                         Margin="0,10" />
+                <Label Text="Comments"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+            </VerticalStackLayout>
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <VerticalStackLayout Padding="16,4">
+                    <Border BackgroundColor="{StaticResource CardBackground}"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="{Binding Content}"
+                                   TextColor="White"
+                                   LineBreakMode="WordWrap" />
+                            <Label Text="{Binding AuthorAndDate}"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   FontSize="11" />
+                            <HorizontalStackLayout IsVisible="{Binding IsOwner}" Spacing="16">
+                                <Label Text="Edit"
+                                       TextColor="{StaticResource Accent}"
+                                       FontSize="12">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEditCommentTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="Delete"
+                                       TextColor="{StaticResource Accent}"
+                                       FontSize="12">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDeleteCommentTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <CollectionView.EmptyView>
+            <Label Text="No comments yet. Be the first to comment!"
+                   TextColor="{StaticResource TextSecondary}"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Margin="32,16" />
+        </CollectionView.EmptyView>
+
+        <CollectionView.Footer>
+            <VerticalStackLayout Padding="16" Spacing="10">
+                <Border BackgroundColor="{StaticResource CardBackground}"
+                        Stroke="{StaticResource BorderColor}"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="8,4">
+                    <Editor x:Name="CommentEditor"
+                            Placeholder="Write a comment..."
+                            MinimumHeightRequest="70"
+                            BackgroundColor="Transparent"
+                            TextColor="White"
+                            PlaceholderColor="{StaticResource TextSecondary}" />
+                </Border>
+                <Button x:Name="PostButton"
+                        Text="Post Comment"
+                        BackgroundColor="{StaticResource Accent}"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HorizontalOptions="End"
+                        Clicked="OnPostCommentClicked" />
+                <BoxView HeightRequest="24" Color="Transparent" />
+            </VerticalStackLayout>
+        </CollectionView.Footer>
+    </CollectionView>
+</ContentPage>

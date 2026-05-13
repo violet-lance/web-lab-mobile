@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebLabMobile.Pages.RegisterPage"
+             BackgroundColor="{StaticResource AppBackground}"
+             Title="Register">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32,24,32,40" Spacing="14">
+
+            <Label Text="Create Account"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource Accent}"
+                   Margin="0,0,0,8" />
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="4,0">
+                <Entry x:Name="NameEntry"
+                       Placeholder="Full Name"
+                       ReturnType="Next"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="{StaticResource TextSecondary}" />
+            </Border>
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="4,0">
+                <Entry x:Name="EmailEntry"
+                       Placeholder="Email"
+                       Keyboard="Email"
+                       ReturnType="Next"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="{StaticResource TextSecondary}" />
+            </Border>
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="4,0">
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="Password"
+                       IsPassword="True"
+                       ReturnType="Done"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="{StaticResource TextSecondary}" />
+            </Border>
+
+            <Label Text="Date of Birth"
+                   TextColor="{StaticResource TextSecondary}"
+                   FontSize="13" />
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="12,4">
+                <DatePicker x:Name="DobPicker"
+                            Format="yyyy-MM-dd"
+                            TextColor="White"
+                            BackgroundColor="Transparent" />
+            </Border>
+
+            <Label Text="Gender"
+                   TextColor="{StaticResource TextSecondary}"
+                   FontSize="13" />
+
+            <Border BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="4,0">
+                <Picker x:Name="GenderPicker"
+                        Title="Select gender"
+                        TextColor="White"
+                        TitleColor="{StaticResource TextSecondary}"
+                        BackgroundColor="Transparent">
+                    <Picker.Items>
+                        <x:String>male</x:String>
+                        <x:String>female</x:String>
+                        <x:String>other</x:String>
+                        <x:String>prefer not to say</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Border>
+
+            <Label x:Name="ErrorLabel"
+                   TextColor="{StaticResource Accent}"
+                   IsVisible="False"
+                   FontSize="13" />
+
+            <Button x:Name="RegisterButton"
+                    Text="Create Account"
+                    BackgroundColor="{StaticResource Accent}"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Clicked="OnRegisterClicked" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                <Label Text="Already have an account?"
+                       TextColor="{StaticResource TextSecondary}"
+                       FontSize="13" />
+                <Label Text="Sign in"
+                       TextColor="{StaticResource Accent}"
+                       FontSize="13"
+                       FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLoginTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

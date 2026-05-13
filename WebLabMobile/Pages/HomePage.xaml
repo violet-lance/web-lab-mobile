@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebLabMobile.Pages.HomePage"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid>
+        <!-- Article list -->
+        <RefreshView x:Name="Refresher"
+                     Refreshing="OnRefreshing"
+                     RefreshColor="{StaticResource Accent}">
+            <CollectionView x:Name="ArticlesView"
+                            SelectionMode="None">
+
+                <CollectionView.Header>
+                    <VerticalStackLayout Padding="16,24,16,8" Spacing="10">
+                        <Label Text="ArticleHub"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource Accent}" />
+                        <Label Text="Explore articles from the community"
+                               FontSize="13"
+                               TextColor="{StaticResource TextSecondary}" />
+                        <Button x:Name="NewArticleButton"
+                                Text="+ New Article"
+                                BackgroundColor="{StaticResource Accent}"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HorizontalOptions="Start"
+                                IsVisible="False"
+                                Clicked="OnNewArticleClicked" />
+                        <ActivityIndicator x:Name="LoadingIndicator"
+                                           IsRunning="True"
+                                           IsVisible="True"
+                                           Color="{StaticResource Accent}"
+                                           HorizontalOptions="Center" />
+                        <Label x:Name="ErrorLabel"
+                               TextColor="{StaticResource Accent}"
+                               IsVisible="False"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="16,4"
+                                BackgroundColor="{StaticResource CardBackground}"
+                                Stroke="{StaticResource BorderColor}"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnArticleTapped" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="*,Auto" RowSpacing="4">
+                                <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           LineBreakMode="WordWrap" />
+                                    <Label Text="{Binding AuthorAndDate}"
+                                           TextColor="{StaticResource TextSecondary}"
+                                           FontSize="12" />
+                                    <Label Text="{Binding Excerpt}"
+                                           TextColor="#9090A8"
+                                           FontSize="13"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="2" />
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1"
+                                       Text="•••"
+                                       TextColor="{StaticResource TextSecondary}"
+                                       FontSize="18"
+                                       VerticalOptions="Start"
+                                       Padding="10,0,0,0"
+                                       IsVisible="{Binding IsOwner}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnArticleMenuTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label Text="No articles yet."
+                           TextColor="{StaticResource TextSecondary}"
+                           HorizontalOptions="Center"
+                           Margin="16,48" />
+                </CollectionView.EmptyView>
+
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="16" Color="Transparent" />
+                </CollectionView.Footer>
+            </CollectionView>
+        </RefreshView>
+
+        <!-- Create / Edit Modal Overlay -->
+        <Grid x:Name="ModalOverlay"
+              IsVisible="False"
+              BackgroundColor="#CC000015">
+            <Border Margin="20"
+                    VerticalOptions="Center"
+                    BackgroundColor="{StaticResource CardBackground}"
+                    Stroke="{StaticResource BorderColor}"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="24">
+                <VerticalStackLayout Spacing="14">
+                    <Label x:Name="ModalTitle"
+                           Text="New Article"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Border BackgroundColor="#0A1020"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeShape="RoundRectangle 6"
+                            Padding="8,2">
+                        <Entry x:Name="TitleEntry"
+                               Placeholder="Title"
+                               BackgroundColor="Transparent"
+                               TextColor="White"
+                               PlaceholderColor="{StaticResource TextSecondary}" />
+                    </Border>
+                    <Border BackgroundColor="#0A1020"
+                            Stroke="{StaticResource BorderColor}"
+                            StrokeShape="RoundRectangle 6"
+                            Padding="8,4">
+                        <Editor x:Name="ContentEditor"
+                                Placeholder="Content"
+                                MinimumHeightRequest="120"
+                                MaximumHeightRequest="220"
+                                BackgroundColor="Transparent"
+                                TextColor="White"
+                                PlaceholderColor="{StaticResource TextSecondary}" />
+                    </Border>
+                    <Label x:Name="ModalError"
+                           TextColor="{StaticResource Accent}"
+                           IsVisible="False"
+                           FontSize="12" />
+                    <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
+                        <Button Text="Cancel"
+                                BackgroundColor="Transparent"
+                                TextColor="{StaticResource TextSecondary}"
+                                BorderColor="{StaticResource BorderColor}"
+                                BorderWidth="1"
+                                CornerRadius="6"
+                                Clicked="OnCancelClicked" />
+                        <Button x:Name="SubmitButton"
+                                Text="Create"
+                                BackgroundColor="{StaticResource Accent}"
+                                TextColor="White"
+                                CornerRadius="6"
+                                Clicked="OnSubmitClicked" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>
